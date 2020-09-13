@@ -2252,6 +2252,28 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &1366659165 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2476214802917507926, guid: 8c6834131ed1fde449cbe914caef0c81,
+    type: 3}
+  m_PrefabInstance: {fileID: 1561710638}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &1366659166
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366659165}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.08
 --- !u!1001 &1561710638
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2432,7 +2454,7 @@ PrefabInstance:
     - target: {fileID: 2476214802917507924, guid: 8c6834131ed1fde449cbe914caef0c81,
         type: 3}
       propertyPath: m_Interpolate
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2476214802917507924, guid: 8c6834131ed1fde449cbe914caef0c81,
         type: 3}
@@ -2444,7 +2466,8 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2476214802917507925, guid: 8c6834131ed1fde449cbe914caef0c81, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8c6834131ed1fde449cbe914caef0c81, type: 3}
 --- !u!4 &1561710639 stripped
 Transform:
