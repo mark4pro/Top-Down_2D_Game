@@ -2312,6 +2312,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Note
       objectReference: {fileID: 0}
+    - target: {fileID: 5080459936992103690, guid: 437514a4fee5ce5488de152c120f4b18,
+        type: 3}
+      propertyPath: m_TagString
+      value: Selectable
+      objectReference: {fileID: 0}
     - target: {fileID: 5080459936992103691, guid: 437514a4fee5ce5488de152c120f4b18,
         type: 3}
       propertyPath: m_LocalPosition.x
