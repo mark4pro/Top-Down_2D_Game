@@ -28,13 +28,16 @@ public class Player_Controller : MonoBehaviour
     {
         //Set Player Camera Size.
         CameraComponent.orthographicSize = CameraZoom;
+
         //Player Camera Follow.
         PlayerCamera.transform.position = (new Vector3(LowerBody.transform.position.x + CameraOffset.x, LowerBody.transform.position.y + CameraOffset.y, -10));
+
         //Upper Body Rotation.
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePos.z = LowerBody.transform.position.z;
-        float Angle = ((180 / Mathf.PI) * (Mathf.Atan2(mousePos.y - LowerBody.transform.position.y, mousePos.x - LowerBody.transform.position.x))) + RotationOffset;
+        Vector2 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //MousePos.z = LowerBody.transform.position.z;
+        float Angle = ((180 / Mathf.PI) * (Mathf.Atan2(MousePos.y - LowerBody.transform.position.y, MousePos.x - LowerBody.transform.position.x))) + RotationOffset;
         UpperBody.transform.rotation = Quaternion.Euler(0, 0, Angle);
+
         //Player Controls.
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
@@ -46,8 +49,16 @@ public class Player_Controller : MonoBehaviour
         }
         if (Input.GetMouseButton(0))
         {
+            //Mouse displacement with relation to player body
+            Vector2 MouseDisplacement = new Vector2(MousePos.x - LowerBody.transform.position.x, MousePos.y - LowerBody.transform.position.y);
             LowerBody.transform.rotation = Quaternion.Euler(0, 0, Angle);
-            LowerBody.transform.position = Vector3.MoveTowards(LowerBody.transform.position, mousePos, moveSpeed * Time.deltaTime);
+            LowerBody.velocity = MouseDisplacement.normalized * moveSpeed;
+
+            //LowerBody.transform.position = Vector3.MoveTowards(LowerBody.transform.position, mousePos, moveSpeed * Time.deltaTime);
+        }
+        else
+        {
+            LowerBody.velocity = Vector2.zero;
         }
     }
 }
