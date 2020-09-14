@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +15,9 @@ public class Player_Controller : MonoBehaviour
     public float CameraZoom;
 
     //Player variables.
+    public Boolean MainPlayer = false;
+    public Boolean FollowMainPlayer = false;
+    public Boolean DockedAtHideout = true;
     public float NormalSpeed;
     public float RunSpeed;
 
@@ -30,7 +34,10 @@ public class Player_Controller : MonoBehaviour
         CameraComponent.orthographicSize = CameraZoom;
 
         //Player Camera Follow.
-        PlayerCamera.transform.position = (new Vector3(LowerBody.transform.position.x + CameraOffset.x, LowerBody.transform.position.y + CameraOffset.y, -10));
+        if (MainPlayer == true)
+        {
+            PlayerCamera.transform.position = (new Vector3(LowerBody.transform.position.x + CameraOffset.x, LowerBody.transform.position.y + CameraOffset.y, -10));
+        }
 
         //Upper Body Rotation.
         Vector2 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -39,26 +46,29 @@ public class Player_Controller : MonoBehaviour
         UpperBody.transform.rotation = Quaternion.Euler(0, 0, Angle);
 
         //Player Controls.
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        if (MainPlayer == true)
         {
-            moveSpeed = RunSpeed;
-        }
-        if (!Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.RightShift))
-        {
-            moveSpeed = NormalSpeed;
-        }
-        if (Input.GetMouseButton(0))
-        {
-            //Mouse displacement with relation to player body
-            Vector2 MouseDisplacement = new Vector2(MousePos.x - LowerBody.transform.position.x, MousePos.y - LowerBody.transform.position.y);
-            LowerBody.transform.rotation = Quaternion.Euler(0, 0, Angle);
-            LowerBody.velocity = MouseDisplacement.normalized * moveSpeed;
+            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+            {
+                moveSpeed = RunSpeed;
+            }
+            if (!Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.RightShift))
+            {
+                moveSpeed = NormalSpeed;
+            }
+            if (Input.GetMouseButton(0))
+            {
+                //Mouse displacement with relation to player body
+                Vector2 MouseDisplacement = new Vector2(MousePos.x - LowerBody.transform.position.x, MousePos.y - LowerBody.transform.position.y);
+                LowerBody.transform.rotation = Quaternion.Euler(0, 0, Angle);
+                LowerBody.velocity = MouseDisplacement.normalized * moveSpeed;
 
-            //LowerBody.transform.position = Vector3.MoveTowards(LowerBody.transform.position, mousePos, moveSpeed * Time.deltaTime);
-        }
-        else
-        {
-            LowerBody.velocity = Vector2.zero;
+                //LowerBody.transform.position = Vector3.MoveTowards(LowerBody.transform.position, mousePos, moveSpeed * Time.deltaTime);
+            }
+            else
+            {
+                LowerBody.velocity = Vector2.zero;
+            }
         }
     }
 }
