@@ -6,6 +6,7 @@ using UnityEngine;
 public class Player_Controller : MonoBehaviour
 {
     //Player set up.
+    public Transform MouseCollider;
     public Camera CameraComponent;
     public Transform PlayerCamera;
     public Rigidbody2D LowerBody;
@@ -24,7 +25,7 @@ public class Player_Controller : MonoBehaviour
     //Sets up health and shit...
     void Start()
     {
-
+        
     }
 
     private float moveSpeed = 0;
@@ -39,8 +40,12 @@ public class Player_Controller : MonoBehaviour
             PlayerCamera.transform.position = (new Vector3(LowerBody.transform.position.x + CameraOffset.x, LowerBody.transform.position.y + CameraOffset.y, -10));
         }
 
-        //Upper Body Rotation.
+        //Upper Body Rotation/Mouse Collider Position.
         Vector2 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (MainPlayer == true)
+        {
+            MouseCollider.transform.position = (new Vector3(MousePos.x, MousePos.y, 1));
+        }
         //MousePos.z = LowerBody.transform.position.z;
         float Angle = ((180 / Mathf.PI) * (Mathf.Atan2(MousePos.y - LowerBody.transform.position.y, MousePos.x - LowerBody.transform.position.x))) + RotationOffset;
         UpperBody.transform.rotation = Quaternion.Euler(0, 0, Angle);
