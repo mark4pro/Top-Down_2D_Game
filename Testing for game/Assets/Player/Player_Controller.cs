@@ -2,14 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class Player_Controller : MonoBehaviour
 {
     //Player set up.
-    public Camera CameraComponent;
+    private Camera CameraComponent;
     public Transform PlayerCamera;
-    public Rigidbody2D LowerBody;
-    public Transform UpperBody;
+    private Rigidbody2D LowerBody;
+    private Transform UpperBody;
     public float RotationOffset;
     public Vector2 CameraOffset;
     public float CameraZoom;
@@ -21,10 +22,25 @@ public class Player_Controller : MonoBehaviour
     public float NormalSpeed;
     public float RunSpeed;
 
+    private AILerp AIController;
+
     //Sets up health and shit...
     void Start()
     {
-
+        foreach(Transform child in transform)
+        {
+            if (child.name == "Lower Body")
+            {
+                LowerBody = child.GetComponent<Rigidbody2D>();
+                foreach (Transform grandchild in LowerBody.transform)
+                {
+                    if (grandchild.name == "Upper Body")
+                        UpperBody = grandchild;
+                }
+            }
+        }
+        CameraComponent = PlayerCamera.GetComponent<Camera>();
+        AIController = GetComponent<AILerp>();
     }
 
     private float moveSpeed = 0;
@@ -39,15 +55,14 @@ public class Player_Controller : MonoBehaviour
             PlayerCamera.transform.position = (new Vector3(LowerBody.transform.position.x + CameraOffset.x, LowerBody.transform.position.y + CameraOffset.y, -10));
         }
 
-        //Upper Body Rotation.
-        Vector2 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //MousePos.z = LowerBody.transform.position.z;
-        float Angle = ((180 / Mathf.PI) * (Mathf.Atan2(MousePos.y - LowerBody.transform.position.y, MousePos.x - LowerBody.transform.position.x))) + RotationOffset;
-        UpperBody.transform.rotation = Quaternion.Euler(0, 0, Angle);
-
         //Player Controls.
         if (MainPlayer == true)
         {
+            //Upper Body Rotation.
+            Vector2 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            float Angle = ((180 / Mathf.PI) * (Mathf.Atan2(MousePos.y - LowerBody.transform.position.y, MousePos.x - LowerBody.transform.position.x))) + RotationOffset;
+            UpperBody.transform.rotation = Quaternion.Euler(0, 0, Angle);
+
             if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
             {
                 moveSpeed = RunSpeed;
@@ -69,6 +84,10 @@ public class Player_Controller : MonoBehaviour
             {
                 LowerBody.velocity = Vector2.zero;
             }
+        }
+        else //Secondary Character 
+        {
+             AIController.canMove = FollowMainPlayer;
         }
     }
 }
