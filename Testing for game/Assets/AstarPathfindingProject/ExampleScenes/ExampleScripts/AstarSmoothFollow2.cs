@@ -16,7 +16,13 @@ namespace Pathfinding.Examples {
 		public float rotationDamping = 10.0f;
 		public bool staticOffset = false;
 
-		void LateUpdate () {
+        //Get target from AIDestSet
+        private void Start()
+        {
+            target = GetComponent<AIDestinationSetter>().target;
+        }
+
+        void LateUpdate () {
 			Vector3 wantedPosition;
 
 			if (staticOffset) {

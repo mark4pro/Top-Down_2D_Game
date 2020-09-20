@@ -11,20 +11,28 @@ public class Player_Controller : MonoBehaviour
     public Transform PlayerCamera;
     private Rigidbody2D LowerBody;
     private Transform UpperBody;
+    [Tooltip("Difference in rotation of sprite relative to up direction")]
     public float RotationOffset;
+    [Tooltip("Offset of camera from the player")]
     public Vector2 CameraOffset;
+    [Tooltip("Camera zoom from player")]
     public float CameraZoom;
 
     //Player variables.
+    [Tooltip("Whether this is the controlled player")]
     public Boolean MainPlayer = false;
+    [Tooltip("Whether this character is following the main player")]
     public Boolean FollowMainPlayer = false;
+    [Tooltip("Whether this character is docked at hideout")]
     public Boolean DockedAtHideout = true;
+    [Tooltip("Normal movement speed of player")]
     public float NormalSpeed;
+    [Tooltip("Run speed of the player")]
     public float RunSpeed;
 
     private AILerp AIController;
 
-    //Sets up health and shit...
+    //Sets up references to components
     void Start()
     {
         foreach(Transform child in transform)
@@ -77,12 +85,11 @@ public class Player_Controller : MonoBehaviour
                 Vector2 MouseDisplacement = new Vector2(MousePos.x - LowerBody.transform.position.x, MousePos.y - LowerBody.transform.position.y);
                 LowerBody.transform.rotation = Quaternion.Euler(0, 0, Angle);
                 LowerBody.velocity = MouseDisplacement.normalized * moveSpeed;
-
-                //LowerBody.transform.position = Vector3.MoveTowards(LowerBody.transform.position, mousePos, moveSpeed * Time.deltaTime);
             }
             else
             {
-                LowerBody.velocity = Vector2.zero;
+                //Slow the character to a stop
+                LowerBody.velocity = Vector2.MoveTowards(LowerBody.velocity,Vector2.zero,.1f);
             }
         }
         else //Secondary Character 
