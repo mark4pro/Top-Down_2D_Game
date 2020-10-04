@@ -8,11 +8,15 @@ public class Player_Controller : MonoBehaviour
 {
     //Player set up.
 <<<<<<< HEAD
+<<<<<<< HEAD
     public Transform MouseCollider;
     public Camera CameraComponent;
 =======
     private Camera CameraComponent;
 >>>>>>> feat-WallCollision
+=======
+    private Camera CameraComponent;
+>>>>>>> 2d49d9e9a4873191b4a57798d3280c987daa4661
     public Transform PlayerCamera;
     private Rigidbody2D LowerBody;
     private Transform UpperBody;
@@ -35,7 +39,7 @@ public class Player_Controller : MonoBehaviour
     [Tooltip("Run speed of the player")]
     public float RunSpeed = 2;
     [Tooltip("Slow walk speed as a percentage of walk speed")]
-    public float SlowWalkSpeed = 0.5f;
+    public float SlowWalkSpeed = 0.8f;
     [Tooltip("Run/Walk distance threshold for secondary character to swap from run to walk speed and vice versa")]
     public float RunWalkSwap = 2;
     [Tooltip("Walk/Slow Walk distance threshold for secondary character to swap from walk to slow walk speed and vice versa")]
@@ -45,15 +49,16 @@ public class Player_Controller : MonoBehaviour
 
     private AILerp AIController;
     private AIDestinationSetter AIDestSet;
-    //How fast the character will slow down from normal walk speed
-    private float SlowDownSpeed;
 
     //Sets up references to components
     void Start()
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         
 =======
+=======
+>>>>>>> 2d49d9e9a4873191b4a57798d3280c987daa4661
         foreach(Transform child in transform)
         {
             if (child.name == "Lower Body")
@@ -69,7 +74,10 @@ public class Player_Controller : MonoBehaviour
         CameraComponent = PlayerCamera.GetComponent<Camera>();
         AIController = GetComponent<AILerp>();
         AIDestSet = GetComponent<AIDestinationSetter>();
+<<<<<<< HEAD
 >>>>>>> feat-WallCollision
+=======
+>>>>>>> 2d49d9e9a4873191b4a57798d3280c987daa4661
     }
 
     private float moveSpeed = 0;
@@ -85,6 +93,7 @@ public class Player_Controller : MonoBehaviour
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         //Upper Body Rotation/Mouse Collider Position.
         Vector2 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (MainPlayer == true)
@@ -97,6 +106,8 @@ public class Player_Controller : MonoBehaviour
 
 =======
 >>>>>>> feat-WallCollision
+=======
+>>>>>>> 2d49d9e9a4873191b4a57798d3280c987daa4661
         //Player Controls.
         if (MainPlayer == true)
         {
@@ -133,14 +144,11 @@ public class Player_Controller : MonoBehaviour
 
             //Slow/Speed character based on distance from target
             if (distanceFromTarget > RunWalkSwap)
-                AIController.speed = RunSpeed;
+                AIController.speed = SecPlayerSpeedModifier * RunSpeed;
             else if (distanceFromTarget < WalkSlowSwap)
-                AIController.speed = Mathf.Lerp(AIController.speed, SlowWalkSpeed * WalkSpeed, SlowDownSpeed);
+                AIController.speed = SecPlayerSpeedModifier * SlowWalkSpeed;
             else
-                AIController.speed = WalkSpeed;
-
-            //Apply global speed modifier
-            AIController.speed *= SecPlayerSpeedModifier;
+                AIController.speed = SecPlayerSpeedModifier * WalkSpeed;
         }
     }
 }

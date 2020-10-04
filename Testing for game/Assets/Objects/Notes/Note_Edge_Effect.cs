@@ -24,7 +24,6 @@ public class Note_Edge_Effect : MonoBehaviour
             Light.SetActive(false);
         }
     }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         NoteWithEffect.transform.position = new Vector3(NoteWithEffect.transform.position.x, NoteWithEffect.transform.position.y, this.transform.position.z);
