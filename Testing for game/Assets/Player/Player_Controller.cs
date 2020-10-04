@@ -68,6 +68,16 @@ public class Player_Controller : MonoBehaviour
         //Set Player Camera Size.
         CameraComponent.orthographicSize = CameraZoom;
 
+        //Set Player Rigid Body To Static.
+        if (MainPlayer == true)
+        {
+            LowerBody.bodyType = RigidbodyType2D.Dynamic;
+        }
+        else
+        {
+            LowerBody.bodyType = RigidbodyType2D.Static;
+        }
+
         //Player Camera Follow.
         if (MainPlayer == true)
         {
