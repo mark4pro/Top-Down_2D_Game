@@ -7,16 +7,7 @@ using Pathfinding;
 public class Player_Controller : MonoBehaviour
 {
     //Player set up.
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public Transform MouseCollider;
-    public Camera CameraComponent;
-=======
     private Camera CameraComponent;
->>>>>>> feat-WallCollision
-=======
-    private Camera CameraComponent;
->>>>>>> 2d49d9e9a4873191b4a57798d3280c987daa4661
     public Transform PlayerCamera;
     private Rigidbody2D LowerBody;
     private Transform UpperBody;
@@ -53,12 +44,6 @@ public class Player_Controller : MonoBehaviour
     //Sets up references to components
     void Start()
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
-        
-=======
-=======
->>>>>>> 2d49d9e9a4873191b4a57798d3280c987daa4661
         foreach(Transform child in transform)
         {
             if (child.name == "Lower Body")
@@ -74,10 +59,6 @@ public class Player_Controller : MonoBehaviour
         CameraComponent = PlayerCamera.GetComponent<Camera>();
         AIController = GetComponent<AILerp>();
         AIDestSet = GetComponent<AIDestinationSetter>();
-<<<<<<< HEAD
->>>>>>> feat-WallCollision
-=======
->>>>>>> 2d49d9e9a4873191b4a57798d3280c987daa4661
     }
 
     private float moveSpeed = 0;
@@ -92,22 +73,6 @@ public class Player_Controller : MonoBehaviour
             PlayerCamera.transform.position = (new Vector3(LowerBody.transform.position.x + CameraOffset.x, LowerBody.transform.position.y + CameraOffset.y, -10));
         }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        //Upper Body Rotation/Mouse Collider Position.
-        Vector2 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (MainPlayer == true)
-        {
-            MouseCollider.transform.position = (new Vector3(MousePos.x, MousePos.y, 1));
-        }
-        //MousePos.z = LowerBody.transform.position.z;
-        float Angle = ((180 / Mathf.PI) * (Mathf.Atan2(MousePos.y - LowerBody.transform.position.y, MousePos.x - LowerBody.transform.position.x))) + RotationOffset;
-        UpperBody.transform.rotation = Quaternion.Euler(0, 0, Angle);
-
-=======
->>>>>>> feat-WallCollision
-=======
->>>>>>> 2d49d9e9a4873191b4a57798d3280c987daa4661
         //Player Controls.
         if (MainPlayer == true)
         {

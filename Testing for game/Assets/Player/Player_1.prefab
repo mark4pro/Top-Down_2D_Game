@@ -11,12 +11,6 @@ GameObject:
   - component: {fileID: 1303092256}
   - component: {fileID: 1303092257}
   m_Layer: 0
-<<<<<<< HEAD
-<<<<<<< HEAD:Testing for game/Assets/Player/Player_1.prefab
-  m_Name: Bottom_Body
-=======
-=======
->>>>>>> 2d49d9e9a4873191b4a57798d3280c987daa4661
   m_Name: Point Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,10 +137,6 @@ GameObject:
   - component: {fileID: 2476214802322399722}
   m_Layer: 0
   m_Name: Upper Body
-<<<<<<< HEAD
->>>>>>> feat-WallCollision:Testing for game/Assets/Player/Character.prefab
-=======
->>>>>>> 2d49d9e9a4873191b4a57798d3280c987daa4661
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -163,20 +153,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-<<<<<<< HEAD
-<<<<<<< HEAD:Testing for game/Assets/Player/Player_1.prefab
-  - {fileID: 4910444681477034990}
-  - {fileID: 7383703633536397102}
-  - {fileID: 7383703633926499883}
-  m_Father: {fileID: 4910444681744726913}
-=======
   - {fileID: 1303092256}
   m_Father: {fileID: 2476214802917507927}
->>>>>>> feat-WallCollision:Testing for game/Assets/Player/Character.prefab
-=======
-  - {fileID: 1303092256}
-  m_Father: {fileID: 2476214802917507927}
->>>>>>> 2d49d9e9a4873191b4a57798d3280c987daa4661
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2476214802322399722
@@ -243,15 +221,7 @@ GameObject:
   - component: {fileID: 2476214802917507924}
   - component: {fileID: 1366659166}
   m_Layer: 0
-<<<<<<< HEAD
-<<<<<<< HEAD:Testing for game/Assets/Player/Player_1.prefab
-  m_Name: Top_Body
-=======
   m_Name: Lower Body
->>>>>>> feat-WallCollision:Testing for game/Assets/Player/Character.prefab
-=======
-  m_Name: Lower Body
->>>>>>> 2d49d9e9a4873191b4a57798d3280c987daa4661
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -267,20 +237,9 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-<<<<<<< HEAD
-<<<<<<< HEAD:Testing for game/Assets/Player/Player_1.prefab
-  m_Children: []
-  m_Father: {fileID: 4910444680328442204}
-=======
   m_Children:
   - {fileID: 2476214802322399717}
   m_Father: {fileID: 2476214801513122186}
->>>>>>> feat-WallCollision:Testing for game/Assets/Player/Character.prefab
-=======
-  m_Children:
-  - {fileID: 2476214802322399717}
-  m_Father: {fileID: 2476214801513122186}
->>>>>>> 2d49d9e9a4873191b4a57798d3280c987daa4661
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2476214802917507930
