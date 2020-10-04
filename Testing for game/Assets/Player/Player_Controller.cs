@@ -26,11 +26,22 @@ public class Player_Controller : MonoBehaviour
     [Tooltip("Whether this character is docked at hideout")]
     public Boolean DockedAtHideout = true;
     [Tooltip("Normal movement speed of player")]
-    public float NormalSpeed;
+    public float WalkSpeed = 1;
     [Tooltip("Run speed of the player")]
-    public float RunSpeed;
+    public float RunSpeed = 2;
+    [Tooltip("Slow walk speed as a percentage of walk speed")]
+    public float SlowWalkSpeed = 0.5f;
+    [Tooltip("Run/Walk distance threshold for secondary character to swap from run to walk speed and vice versa")]
+    public float RunWalkSwap = 2;
+    [Tooltip("Walk/Slow Walk distance threshold for secondary character to swap from walk to slow walk speed and vice versa")]
+    public float WalkSlowSwap = 0.5f;
+    [Tooltip("Global modifier for secondary player's speed")]
+    public float SecPlayerSpeedModifier = 0.8f;
 
     private AILerp AIController;
+    private AIDestinationSetter AIDestSet;
+    //How fast the character will slow down from normal walk speed
+    private float SlowDownSpeed;
 
     //Sets up references to components
     void Start()
@@ -49,6 +60,7 @@ public class Player_Controller : MonoBehaviour
         }
         CameraComponent = PlayerCamera.GetComponent<Camera>();
         AIController = GetComponent<AILerp>();
+        AIDestSet = GetComponent<AIDestinationSetter>();
     }
 
     private float moveSpeed = 0;
@@ -77,7 +89,7 @@ public class Player_Controller : MonoBehaviour
             }
             if (!Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.RightShift))
             {
-                moveSpeed = NormalSpeed;
+                moveSpeed = WalkSpeed;
             }
             if (Input.GetMouseButton(0))
             {
@@ -94,7 +106,19 @@ public class Player_Controller : MonoBehaviour
         }
         else //Secondary Character 
         {
-             AIController.canMove = FollowMainPlayer;
+            float distanceFromTarget = Vector3.Distance(transform.position, AIDestSet.target.transform.position);
+            AIController.canMove = FollowMainPlayer;
+
+            //Slow/Speed character based on distance from target
+            if (distanceFromTarget > RunWalkSwap)
+                AIController.speed = RunSpeed;
+            else if (distanceFromTarget < WalkSlowSwap)
+                AIController.speed = Mathf.Lerp(AIController.speed, SlowWalkSpeed * WalkSpeed, SlowDownSpeed);
+            else
+                AIController.speed = WalkSpeed;
+
+            //Apply global speed modifier
+            AIController.speed *= SecPlayerSpeedModifier;
         }
     }
 }

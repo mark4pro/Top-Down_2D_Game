@@ -1334,10 +1334,25 @@ PrefabInstance:
       propertyPath: FollowMainPlayer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2476214801513122187, guid: 8c6834131ed1fde449cbe914caef0c81,
+        type: 3}
+      propertyPath: WalkSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476214801513122187, guid: 8c6834131ed1fde449cbe914caef0c81,
+        type: 3}
+      propertyPath: RunWalkSwap
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2476214802322399716, guid: 8c6834131ed1fde449cbe914caef0c81,
         type: 3}
       propertyPath: m_Name
       value: Upper Body
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476214802322399717, guid: 8c6834131ed1fde449cbe914caef0c81,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2476214802322399722, guid: 8c6834131ed1fde449cbe914caef0c81,
         type: 3}
@@ -1393,12 +1408,12 @@ MonoBehaviour:
   repathRate: 0.5
   canSearch: 1
   canMove: 1
-  speed: 0.5
+  speed: 1
   orientation: 1
   enableRotation: 1
-  rotationSpeed: 10
+  rotationSpeed: 5
   interpolatePathSwitches: 1
-  switchPathInterpolationSpeed: 5
+  switchPathInterpolationSpeed: 10
   targetCompatibility: {fileID: 0}
 --- !u!114 &120128106
 MonoBehaviour:
@@ -1442,7 +1457,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   target: {fileID: 128539043}
-  distanceFromTarget: 0.2
+  distanceFromTarget: 0.3
 --- !u!114 &120128108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1458,10 +1473,10 @@ MonoBehaviour:
   version: 1
   smoothType: 0
   subdivisions: 0
-  iterations: 2
+  iterations: 1
   strength: 0.5
   uniformLength: 0
-  maxSegmentLength: 2
+  maxSegmentLength: 5
   bezierTangentLength: 0.4
   offset: 0.2
   factor: 0.1
@@ -1714,10 +1729,20 @@ PrefabInstance:
       propertyPath: DockedAtHideout
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2476214801513122187, guid: 8c6834131ed1fde449cbe914caef0c81,
+        type: 3}
+      propertyPath: WalkSpeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2476214802322399716, guid: 8c6834131ed1fde449cbe914caef0c81,
         type: 3}
       propertyPath: m_Name
       value: Upper Body
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476214802322399717, guid: 8c6834131ed1fde449cbe914caef0c81,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2476214802322399722, guid: 8c6834131ed1fde449cbe914caef0c81,
         type: 3}
