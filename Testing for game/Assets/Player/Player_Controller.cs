@@ -7,6 +7,7 @@ using Pathfinding;
 public class Player_Controller : MonoBehaviour
 {
     //Player set up.
+    public Transform MouseCollider;
     private Camera CameraComponent;
     public Transform PlayerCamera;
     private Rigidbody2D LowerBody;
@@ -73,13 +74,22 @@ public class Player_Controller : MonoBehaviour
             PlayerCamera.transform.position = (new Vector3(LowerBody.transform.position.x + CameraOffset.x, LowerBody.transform.position.y + CameraOffset.y, -10));
         }
 
+        //Upper Body Rotation/Mouse Collider Position.
+        Vector2 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (MainPlayer == true)
+        {
+            MouseCollider.transform.position = (new Vector3(MousePos.x, MousePos.y, 1));
+        }
+        //MousePos.z = LowerBody.transform.position.z;
+        float Angle = ((180 / Mathf.PI) * (Mathf.Atan2(MousePos.y - LowerBody.transform.position.y, MousePos.x - LowerBody.transform.position.x))) + RotationOffset;
+        UpperBody.transform.rotation = Quaternion.Euler(0, 0, Angle);
+
+        //Set AI
+        AIController.canMove = FollowMainPlayer;
+
         //Player Controls.
         if (MainPlayer == true)
         {
-            //Upper Body Rotation.
-            Vector2 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            float Angle = ((180 / Mathf.PI) * (Mathf.Atan2(MousePos.y - LowerBody.transform.position.y, MousePos.x - LowerBody.transform.position.x))) + RotationOffset;
-            UpperBody.transform.rotation = Quaternion.Euler(0, 0, Angle);
 
             if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
             {
@@ -105,7 +115,6 @@ public class Player_Controller : MonoBehaviour
         else //Secondary Character 
         {
             float distanceFromTarget = Vector3.Distance(transform.position, AIDestSet.target.transform.position);
-            AIController.canMove = FollowMainPlayer;
 
             //Slow/Speed character based on distance from target
             if (distanceFromTarget > RunWalkSwap)
