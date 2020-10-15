@@ -8,16 +8,10 @@ public class Player_Controller : MonoBehaviour
 {
     //Player set up.
     public Transform MouseCollider;
-    private Camera CameraComponent;
-    public Transform PlayerCamera;
     private Rigidbody2D LowerBody;
     private Transform UpperBody;
     [Tooltip("Difference in rotation of sprite relative to up direction")]
     public float RotationOffset;
-    [Tooltip("Offset of camera from the player")]
-    public Vector2 CameraOffset;
-    [Tooltip("Camera zoom from player")]
-    public float CameraZoom;
 
     //Player variables.
     [Tooltip("Whether this is the controlled player")]
@@ -57,7 +51,6 @@ public class Player_Controller : MonoBehaviour
                 }
             }
         }
-        CameraComponent = PlayerCamera.GetComponent<Camera>();
         AIController = GetComponent<AILerp>();
         AIDestSet = GetComponent<AIDestinationSetter>();
     }
@@ -65,8 +58,6 @@ public class Player_Controller : MonoBehaviour
     private float moveSpeed = 0;
     void Update()
     {
-        //Set Player Camera Size.
-        CameraComponent.orthographicSize = CameraZoom;
 
         //Set Player Rigid Body To Static.
         if (MainPlayer == true)
@@ -76,12 +67,6 @@ public class Player_Controller : MonoBehaviour
         else
         {
             LowerBody.bodyType = RigidbodyType2D.Static;
-        }
-
-        //Player Camera Follow.
-        if (MainPlayer == true)
-        {
-            PlayerCamera.transform.position = (new Vector3(LowerBody.transform.position.x + CameraOffset.x, LowerBody.transform.position.y + CameraOffset.y, -10));
         }
 
         //Upper Body Rotation/Mouse Collider Position.

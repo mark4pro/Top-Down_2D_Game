@@ -189,3 +189,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6ed1ca988e99644587ff26603c377ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FollowOverride: 0
+  CameraZoom: 1
+  Character1: {fileID: 0}
+  Character2: {fileID: 0}
+  CameraOffset: {x: 0, y: 0}
