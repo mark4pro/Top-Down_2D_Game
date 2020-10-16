@@ -8,17 +8,12 @@ public class Player_Controller : MonoBehaviour
 {
     //Player set up.
     public Transform MouseCollider;
-    private Camera CameraComponent;
-    public Transform PlayerCamera;
     private Transform LowerBody;
     private Transform UpperBody;
     private Rigidbody2D rb;
+    private GameObject[] Hideouts;
     [Tooltip("Difference in rotation of sprite relative to up direction")]
     public float RotationOffset;
-    [Tooltip("Offset of camera from the player")]
-    public Vector2 CameraOffset;
-    [Tooltip("Camera zoom from player")]
-    public float CameraZoom;
 
     //Player variables.
     [Tooltip("Whether this is the controlled player")]
@@ -58,8 +53,8 @@ public class Player_Controller : MonoBehaviour
                 }
             }
         }
+        Hideouts = GameObject.FindGameObjectsWithTag("Hideout");
         rb = GetComponent<Rigidbody2D>();
-        CameraComponent = PlayerCamera.GetComponent<Camera>();
         AIController = GetComponent<AILerp>();
         AIDestSet = GetComponent<AIDestinationSetter>();
     }
@@ -67,22 +62,23 @@ public class Player_Controller : MonoBehaviour
     private float moveSpeed = 0;
     void Update()
     {
-        //Set Player Camera Size.
-        CameraComponent.orthographicSize = CameraZoom;
         //Set AI
         AIController.canMove = FollowMainPlayer;
+
+        //Upper Body Rotation/Mouse Collider Position. (Delete When we work on the AI fighting mechanic)
+        Vector2 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        MouseCollider.transform.position = (new Vector3(MousePos.x, MousePos.y, 1));
+        float Angle = (Mathf.Rad2Deg * (Mathf.Atan2(MousePos.y - LowerBody.transform.position.y, MousePos.x - LowerBody.transform.position.x))) + RotationOffset;
+        UpperBody.transform.rotation = Quaternion.Euler(0, 0, Angle);
 
         //Player Controls.
         if (MainPlayer == true)
         {
-            //Upper Body Rotation/Mouse Collider Position.
-            Vector2 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            MouseCollider.transform.position = (new Vector3(MousePos.x, MousePos.y, 1));
-            float Angle = (Mathf.Rad2Deg * (Mathf.Atan2(MousePos.y - LowerBody.transform.position.y, MousePos.x - LowerBody.transform.position.x))) + RotationOffset;
-            UpperBody.transform.rotation = Quaternion.Euler(0, 0, Angle);
-
-            //Player camera follows
-            PlayerCamera.transform.position = (new Vector3(LowerBody.transform.position.x + CameraOffset.x, LowerBody.transform.position.y + CameraOffset.y, -10));
+            //Upper Body Rotation/Mouse Collider Position. (Delete // on this portion when the AI fighting mechanic is being worked on)
+            //Vector2 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //MouseCollider.transform.position = (new Vector3(MousePos.x, MousePos.y, 1));
+            //float Angle = (Mathf.Rad2Deg * (Mathf.Atan2(MousePos.y - LowerBody.transform.position.y, MousePos.x - LowerBody.transform.position.x))) + RotationOffset;
+            //UpperBody.transform.rotation = Quaternion.Euler(0, 0, Angle);
 
             //Turn off AI when main character
             ToggleAI(false);
