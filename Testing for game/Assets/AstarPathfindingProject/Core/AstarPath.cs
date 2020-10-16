@@ -626,7 +626,7 @@ public class AstarPath : VersionedMonoBehaviour {
 	/// Shows or hides graph inspectors.
 	/// Used internally by the editor
 	/// </summary>
-	public bool showGraphs = false;
+	public bool showGraphs = true;
 
 	/// <summary>
 	/// The next unused Path ID.

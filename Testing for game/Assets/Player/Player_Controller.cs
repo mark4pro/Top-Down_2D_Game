@@ -10,8 +10,9 @@ public class Player_Controller : MonoBehaviour
     public Transform MouseCollider;
     private Camera CameraComponent;
     public Transform PlayerCamera;
-    private Rigidbody2D LowerBody;
+    private Transform LowerBody;
     private Transform UpperBody;
+    private Rigidbody2D rb;
     [Tooltip("Difference in rotation of sprite relative to up direction")]
     public float RotationOffset;
     [Tooltip("Offset of camera from the player")]
@@ -49,7 +50,7 @@ public class Player_Controller : MonoBehaviour
         {
             if (child.name == "Lower Body")
             {
-                LowerBody = child.GetComponent<Rigidbody2D>();
+                LowerBody = child.GetComponent<Transform>();
                 foreach (Transform grandchild in LowerBody.transform)
                 {
                     if (grandchild.name == "Upper Body")
@@ -57,6 +58,7 @@ public class Player_Controller : MonoBehaviour
                 }
             }
         }
+        rb = GetComponent<Rigidbody2D>();
         CameraComponent = PlayerCamera.GetComponent<Camera>();
         AIController = GetComponent<AILerp>();
         AIDestSet = GetComponent<AIDestinationSetter>();
@@ -67,39 +69,23 @@ public class Player_Controller : MonoBehaviour
     {
         //Set Player Camera Size.
         CameraComponent.orthographicSize = CameraZoom;
-
-        //Set Player Rigid Body To Static.
-        if (MainPlayer == true)
-        {
-            LowerBody.bodyType = RigidbodyType2D.Dynamic;
-        }
-        else
-        {
-            LowerBody.bodyType = RigidbodyType2D.Static;
-        }
-
-        //Player Camera Follow.
-        if (MainPlayer == true)
-        {
-            PlayerCamera.transform.position = (new Vector3(LowerBody.transform.position.x + CameraOffset.x, LowerBody.transform.position.y + CameraOffset.y, -10));
-        }
-
-        //Upper Body Rotation/Mouse Collider Position.
-        Vector2 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (MainPlayer == true)
-        {
-            MouseCollider.transform.position = (new Vector3(MousePos.x, MousePos.y, 1));
-        }
-        //MousePos.z = LowerBody.transform.position.z;
-        float Angle = ((180 / Mathf.PI) * (Mathf.Atan2(MousePos.y - LowerBody.transform.position.y, MousePos.x - LowerBody.transform.position.x))) + RotationOffset;
-        UpperBody.transform.rotation = Quaternion.Euler(0, 0, Angle);
-
         //Set AI
         AIController.canMove = FollowMainPlayer;
 
         //Player Controls.
         if (MainPlayer == true)
         {
+            //Upper Body Rotation/Mouse Collider Position.
+            Vector2 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            MouseCollider.transform.position = (new Vector3(MousePos.x, MousePos.y, 1));
+            float Angle = (Mathf.Rad2Deg * (Mathf.Atan2(MousePos.y - LowerBody.transform.position.y, MousePos.x - LowerBody.transform.position.x))) + RotationOffset;
+            UpperBody.transform.rotation = Quaternion.Euler(0, 0, Angle);
+
+            //Player camera follows
+            PlayerCamera.transform.position = (new Vector3(LowerBody.transform.position.x + CameraOffset.x, LowerBody.transform.position.y + CameraOffset.y, -10));
+
+            //Turn off AI when main character
+            ToggleAI(false);
 
             if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
             {
@@ -114,16 +100,20 @@ public class Player_Controller : MonoBehaviour
                 //Mouse displacement with relation to player body
                 Vector2 MouseDisplacement = new Vector2(MousePos.x - LowerBody.transform.position.x, MousePos.y - LowerBody.transform.position.y);
                 LowerBody.transform.rotation = Quaternion.Euler(0, 0, Angle);
-                LowerBody.velocity = MouseDisplacement.normalized * moveSpeed;
+                rb.velocity = MouseDisplacement.normalized * moveSpeed;
             }
             else
             {
                 //Slow the character to a stop
-                LowerBody.velocity = Vector2.MoveTowards(LowerBody.velocity,Vector2.zero,.1f);
+                rb.velocity = Vector2.MoveTowards(rb.velocity,Vector2.zero,.1f);
             }
         }
         else //Secondary Character 
         {
+            //Enable AI
+            ToggleAI(true);
+
+            //Distance from followed target
             float distanceFromTarget = Vector3.Distance(transform.position, AIDestSet.target.transform.position);
 
             //Slow/Speed character based on distance from target
@@ -134,5 +124,17 @@ public class Player_Controller : MonoBehaviour
             else
                 AIController.speed = SecPlayerSpeedModifier * WalkSpeed;
         }
+    }
+
+    /// <summary>
+    /// Enable/Disable AI controller
+    /// </summary>
+    /// <param name="state">State to set the AI to.</param>
+    void ToggleAI(bool state)
+    {
+        AIDestSet.enabled = state;
+        AIController.enabled = state;
+
+        rb.bodyType = state ? RigidbodyType2D.Static : RigidbodyType2D.Dynamic;
     }
 }
