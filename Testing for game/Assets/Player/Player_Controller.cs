@@ -12,6 +12,7 @@ public class Player_Controller : MonoBehaviour
     private Transform UpperBody;
     private Rigidbody2D rb;
     private GameObject[] Hideouts;
+    private GameObject[] Inventory;
     [Tooltip("Difference in rotation of sprite relative to up direction")]
     public float RotationOffset;
 
@@ -34,6 +35,8 @@ public class Player_Controller : MonoBehaviour
     public float WalkSlowSwap = 0.5f;
     [Tooltip("Global modifier for secondary player's speed")]
     public float SecPlayerSpeedModifier = 0.8f;
+    [Tooltip("Max inventory space")]
+    public float MaxInventory = 10;
 
     private AILerp AIController;
     private AIDestinationSetter AIDestSet;
