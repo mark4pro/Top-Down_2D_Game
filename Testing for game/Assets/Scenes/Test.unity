@@ -1412,7 +1412,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAACAn+s6IvKzXwIAAAMFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVMty4jAQ/BVK5yVlG0jC3nYJIXvIo8Ju5eKLbI2xClly6REgKf59R7LADuGC3N0z6nnYn4RL00JplV5pzh4VA/JzRPyZ/Bj15APs6UbJNf+Ak+aNM1t7EQ2aV2q5Qjz1YUY1YDUvf8mN8OIEQSd5pXSzZBtYKGMNwhUVBpDSyvpoidDniOzxbzz3IQc8ZTf+9IGneTI64rEEaUH30pMwubqezvE3ifJO7WQpaNMC89b7oFkMmgWRxJIin1z5AkolBDfREbGHNlT8Sg++XsYpVhcseG0NfFNb73QY+FxVBmy0p+nhjmtsUpeR/FZd5xpqtp2ndyqcv2OWZsFRl/TxGz9OA11p1Tyc7k0Tf4eteblFhyU1dtDaIXz31biTOyq2tBDwVoN8UiutnGRIWu18qDOQ3fWP59IWNZTbHu+sXoCu/T6g7GpyO01vryfXy3FyE6fkCzqGVuwXgjdFGMG0A9ZChcaHXQCNQ/qD7sOmmJgXUW/pn4G/dDNcqUjcc20sUrFk6b0WymkvJcvQQF+aswulJQQ4VtCCpMIeXjCNvZznBTe49oK5p/7liZdH7vROXIQEuNcnyQX1onbnyZla7R7B1M/OCi6hN+2JJ+zTQknZrduwJ6ewtdMVLQdhG8fZ1z0jrChoVhVlNpnNWcGycXKbTgGyLKmqasqKlIRF5BLrpOKlMxrbg1OTfXKJS3f6poxWmrZh9ZmmuxX/aNSg5VxWal1qAPncZTgbB42X4AvKloxjg9ZgLZdh3uQzJ0KVW2D5OVEeKl3uraZ5nyUnLX9X1iM5WYSPSE6O5PgfUEsDBBQAAAgIAACAn+tFc9wZbQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM01VFQSi9KLMgoBooYgjilmSkgdrRSSlJSolFaUrKRsallSlKKka6BhaFJaqqRkUFaWppJSpKhUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAACAn+s6IvKzXwIAAAMFAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAACAn+tFc9wZbQAAAHgAAAAJACQAAAAAAAAAAAAAAKwCAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAZAMAAAAA
+    dataString: UEsDBBQAAAgIAACYn+smVfnEZQIAAAkFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVMty4jAQ/BVK5yVlO4TA3nYJIXvIo8Ju5eKLbI2xClly6REgKf59R7LADjkhumdG3TMjfxIuTQulVXqlOXtUDMjPEfFn8mPUkw+wpxsl1/wDTjFvnNnaB9EQ80otV4inPs2oBqzm5S+5ET44QdBJXindLNkGFspYg3BFhQGktLI+WyL0OSJ7/BnPfcoBT9mtP33gaZ6MjngsQVrQfegpMLmaTubz+exmMo0JXbyTpaBNC8yL79OmMW0agiSainxy5S2USghuoiZiD23wvG5r0OBNM07RYtDhw2vgm9p6ucPc56oyYKNGTQ93XGOnuqLkt+ra11Cz7WS9U+H8NTdpFkR1RR+/8eM00JVWzcPp3jTxd9ial9tXeiipsYP+DuG7r8Kd3FGxpYWAtxrkk1pp5SRD0mrnU52B7K7/e7a2qKHc9ngn9QJ07fcpZVfXs0k6m15Pl+PkNg7KGzqGVuwXgjdFmMKkA9ZChd6HhQCNc/qD6sO6mFgXUS/pn4G/dDPcq0jcc20sUtGy9FoL5bQPJcvQQG/N2YXSEgIcHbQgqbCHFyxjL+d5wQ2uvWDuqX9B8fLInR7GRUqA+/gkuaBe1O48OVOr3SOY+tlZwSX0oj3xhH1aKCm7dRv25JS2drqi5VDDxnH2ddEIKwqaVUWZXd/MWcGycTJLJwBZllRVNWFFSsImcolGqXjplMb+4NhkL0ri1p2+LKOVpm3YfabpbsU/GjXoOZeVWpcaQD53Fc7KQeMl+EjZknHs0Bqs5TIMnHzmRKhyCyw/F8qD1eXeapr3VXLS8ndlPZKTRfiU5ORIjv8BUEsDBBQAAAgIAACYn+tFc9wZbQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM01VFQSi9KLMgoBooYgjilmSkgdrRSSlJSolFaUrKRsallSlKKka6BhaFJaqqRkUFaWppJSpKhUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAACYn+smVfnEZQIAAAkFAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAACYn+tFc9wZbQAAAHgAAAAJACQAAAAAAAAAAAAAALICAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAagMAAAAA
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -1425,7 +1425,7 @@ MonoBehaviour:
   manualDebugFloorRoof: 0
   showSearchTree: 0
   unwalkableNodeDebugSize: 0.3
-  logPathResults: 1
+  logPathResults: 0
   maxNearestNodeDistance: 100
   scanOnStartup: 1
   fullGetNearestSearch: 0
@@ -1584,6 +1584,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Character 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4296921158629208843, guid: 392789d2c100bb44abd45477ada73f0b,
+        type: 3}
+      propertyPath: repathRate
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 8883641173586325832, guid: 392789d2c100bb44abd45477ada73f0b,
         type: 3}
@@ -1750,6 +1755,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 4296921158629208843, guid: 392789d2c100bb44abd45477ada73f0b,
+        type: 3}
+      propertyPath: repathRate
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 8883641173586325832, guid: 392789d2c100bb44abd45477ada73f0b,
         type: 3}
