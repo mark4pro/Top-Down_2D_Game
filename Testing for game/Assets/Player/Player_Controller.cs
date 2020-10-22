@@ -135,6 +135,6 @@ public class Player_Controller : MonoBehaviour
         AIDestSet.enabled = state;
         AIController.enabled = state;
 
-        rb.bodyType = state ? RigidbodyType2D.Static : RigidbodyType2D.Dynamic;
+        //rb.bodyType = state ? RigidbodyType2D.Static : RigidbodyType2D.Dynamic;
     }
 }
