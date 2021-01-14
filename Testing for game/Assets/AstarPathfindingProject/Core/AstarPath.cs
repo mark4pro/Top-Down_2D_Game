@@ -1263,13 +1263,11 @@ public class AstarPath : VersionedMonoBehaviour {
 		// Outside of play mode everything is synchronous, so no threads are used.
 		if (!Application.isPlaying) numThreads = 0;
 
-		// Trying to prevent simple modding to add support for more than one thread
-		if (numThreads > 1) {
-			threadCount = ThreadCount.One;
-			numThreads = 1;
-		}
+        //manually set threads until I get the full version
+        threadCount = ThreadCount.Four;
+        numThreads = 4;
 
-		int numProcessors = Mathf.Max(numThreads, 1);
+        int numProcessors = Mathf.Max(numThreads, 1);
 		bool multithreaded = numThreads > 0;
 		pathProcessor = new PathProcessor(this, pathReturnQueue, numProcessors, multithreaded);
 

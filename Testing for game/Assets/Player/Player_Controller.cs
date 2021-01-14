@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using UnityEngine.InputSystem;
 
 public class Player_Controller : MonoBehaviour
 {
     //Player set up.
+    PlayerControls controls;
     public Transform MouseCollider;
     private Transform LowerBody;
     private Transform UpperBody;
@@ -41,6 +43,29 @@ public class Player_Controller : MonoBehaviour
     private AILerp AIController;
     private AIDestinationSetter AIDestSet;
 
+    private Vector2 look;
+    private float moving;
+    private float running;
+    private void Awake()
+    {
+        controls = new PlayerControls();
+        controls.Player.Look.performed += cntxt => look = cntxt.ReadValue<Vector2>();
+        controls.Player.Move.performed += cntxt => moving = cntxt.ReadValue<float>();
+        controls.Player.Move.canceled += cntxt => moving = 0;
+        controls.Player.Run.performed += cntxt => running = cntxt.ReadValue<float>();
+        controls.Player.Run.canceled += cntxt => running = 0;
+    }
+
+    private void OnEnable()
+    {
+        controls.Player.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Player.Disable();
+    }
+
     //Sets up references to components
     void Start()
     {
@@ -69,7 +94,7 @@ public class Player_Controller : MonoBehaviour
         AIController.canMove = FollowMainPlayer;
 
         //Upper Body Rotation/Mouse Collider Position. (Delete When we work on the AI fighting mechanic)
-        Vector2 MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 MousePos = Camera.main.ScreenToWorldPoint(look);
         MouseCollider.transform.position = (new Vector3(MousePos.x, MousePos.y, 1));
         float Angle = (Mathf.Rad2Deg * (Mathf.Atan2(MousePos.y - LowerBody.transform.position.y, MousePos.x - LowerBody.transform.position.x))) + RotationOffset;
         UpperBody.transform.rotation = Quaternion.Euler(0, 0, Angle);
@@ -86,15 +111,15 @@ public class Player_Controller : MonoBehaviour
             //Turn off AI when main character
             ToggleAI(false);
 
-            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+            if (running == 1)
             {
                 moveSpeed = RunSpeed;
             }
-            if (!Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.RightShift))
+            if (running == 0)
             {
                 moveSpeed = WalkSpeed;
             }
-            if (Input.GetMouseButton(0))
+            if (moving == 1)
             {
                 //Mouse displacement with relation to player body
                 Vector2 MouseDisplacement = new Vector2(MousePos.x - LowerBody.transform.position.x, MousePos.y - LowerBody.transform.position.y);

@@ -633,6 +633,6 @@ PlayerSettings:
   projectName: Testing for game
   organizationId: mark-4-productions
   cloudEnabled: 0
-  enableNativePlatformBackendsForNewInputSystem: 0
-  disableOldInputManagerSupport: 0
+  enableNativePlatformBackendsForNewInputSystem: 1
+  disableOldInputManagerSupport: 1
   legacyClampBlendShapeWeights: 1
